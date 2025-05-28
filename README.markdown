@@ -1,7 +1,7 @@
 # Gold Price Predictor
 
 ## Project Description
-The **Gold Price Predictor** is a Streamlit-based web application designed to predict gold prices in Indian Rupees (INR) per gram for future dates (May 22, 2025, to May 16, 2026). The app leverages a pre-trained Linear Regression model and Prophet-generated forecast data to provide accurate predictions. Users can input the grams of gold and select a date using a calendar or manual entry. The app outputs the predicted price per gram and the total price for the specified grams. Additionally, it displays the real-time price of the Nippon India ETF Gold BeES (GOLDBEES.NS) in the sidebar for market context. A note informs users that predictions typically differ from actual prices by 400 to 600 INR, based on historical performance.
+The **Gold Price Predictor** is a Streamlit-based web application designed to predict gold prices in Indian Rupees (INR) per gram for future dates (May 22, 2025, to May 16, 2026). The app leverages a pre-trained Linear Regression model and Prophet-generated forecast data to provide accurate predictions. Users can input the grams of gold and select a date using a calendar or manual entry. The app outputs the predicted price per gram and the total price for the specified grams. Additionally, it displays the real-time price of the Gold ETF (IVZINGOLD.BO) in the sidebar for market context. A note informs users that predictions typically differ from actual prices by 600 to 800 INR, based on historical performance.
 
 **Note**: The model uses 'High' and 'Low' features, which may cause data leakage as they are proxied by the forecasted 'Close' price. For more accurate predictions, consider retraining the model without these features.
 
@@ -81,10 +81,10 @@ gold_price_prediction/
    - This will launch the app, typically at `http://localhost:8501`. Open your browser to this URL if it doesn’t open automatically.
 
 2. **Using the App**:
-   - **Sidebar**: View the real-time price of Nippon India ETF Gold BeES (GOLDBEES.NS). If the fetch fails (e.g., due to no internet), an error message will appear.
+   - **Sidebar**: View the real-time price of Gold ETF Gold BeES (IVZINGOLD.BO). If the fetch fails (e.g., due to no internet), an error message will appear.
    - **Grams of Gold**: Enter a positive number (e.g., `10` for 10 grams).
    - **Date Selection**: Use the calendar to select a date (restricted to May 22, 2025, to May 16, 2026) or enter a date manually in `YYYY-MM-DD` format (e.g., `2025-05-23`).
-   - **Predict Button**: Click to view the predicted price per gram, total price, and a note about the typical error range (400–600 INR).
+   - **Predict Button**: Click to view the predicted price per gram, total price, and a note about the typical error range (600 to 800 INR).
    - **Output**: Results or error messages (e.g., for invalid inputs) will appear below the button.
 
 ## Troubleshooting
@@ -92,11 +92,11 @@ gold_price_prediction/
 - **Dependency Issues**: Verify all packages are installed correctly (`pip list`). Reinstall dependencies if needed (`pip install -r requirements.txt`).
 - **Real-Time Price Issues**: If the ETF price fetch fails, check your internet connection or try again later. The app will display an error message in the sidebar.
 - **Port Conflicts**: If `http://localhost:8501` is blocked, Streamlit will suggest an alternative port in the terminal.
-- **Market Hours**: Real-time ETF prices are most accurate during Indian market hours (NSE: 9:15 AM to 3:30 PM IST). Outside these hours, the latest closing price is shown.
+
 
 ## Notes
-- **Gold ETF**: The app uses Nippon India ETF Gold BeES (GOLDBEES.NS) for real-time prices, as it’s a popular gold ETF in India representing 1 gram of gold per unit. To use a different ETF, modify the ticker in the `fetch_gold_etf_price` function in `app.py`.
-- **Prediction Accuracy**: The model’s predictions are based on historical data and Prophet forecasts. The typical error range is 400–600 INR, as observed in historical comparisons (e.g., May 23–28, 2025).
+- **Gold ETF**: The app uses Gold ETF Gold BeES (IVZINGOLD.BO) for real-time prices, as it’s a popular gold ETF in India representing 1 gram of gold per unit. To use a different ETF, modify the ticker in the `fetch_gold_etf_price` function in `app.py`.
+- **Prediction Accuracy**: The model’s predictions are based on historical data and Prophet forecasts. The typical error range is 600-800 INR, as observed in historical comparisons (e.g., May 23–28, 2025).
 - **Data Leakage**: The model includes 'High' and 'Low' features, which may cause data leakage as they are proxied by the forecasted 'Close' price. Retraining without these features is recommended for improved accuracy.
 - **Real-Time Price Limitations**: The `yfinance` library provides near-real-time data but may have delays or fail during non-market hours or due to API limits.
 
